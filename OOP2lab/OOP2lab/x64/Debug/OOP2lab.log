@@ -1,0 +1,36 @@
+﻿  TV.cpp
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(166,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(166,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(175,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(175,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(197,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(197,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(206,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(206,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(284,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(284,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(293,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(293,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(318,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(323,63): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(348,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(348,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(357,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(357,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(380,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(380,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(389,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(389,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(410,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(410,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(419,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(419,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(444,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(444,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(453,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(453,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(481,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(481,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(490,77): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\TV.cpp(490,19): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  OOP2lab.vcxproj -> C:\Users\Игорь\Documents\GitHub\OOP2lab\OOP2lab\x64\Debug\OOP2lab.exe
