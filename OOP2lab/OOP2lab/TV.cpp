@@ -1,7 +1,16 @@
+#include <iostream>
 #include <Windows.h>
 #include "TV.h"
+
+using namespace std;
+
 extern HDC hdc;			// объявление контекста устройства
 #define KEY_DOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
+#define DESTRUCTIVE_SIZE 1
+#define INTERACTING_SIZE 1
+
+extern Object destructiveObjects[1];
+//extern Object interactingObjects[1];
 
 //конструктор Location
 Location::Location(int x, int y)
@@ -14,6 +23,16 @@ Location::Location(int x, int y)
 //деструктор Location
 Location::~Location()
 {
+}
+
+Object::Object() : Point(0, 0)
+{
+	
+}
+
+Object::Object(int x, int y) : Point(x, y)
+{
+	
 }
 
 //получение координаты X
@@ -92,7 +111,7 @@ void Point::MoveTo(int newX, int newY)
 }//Point::MoveTo(int newX, int newY)
 
 //сдвиг по нажатию
-void Point::Drag(int Step)
+void Point::Drag(int step)
 {
 	int figX, figY; //новые координаты фигуры
 
@@ -108,28 +127,28 @@ void Point::Drag(int Step)
 		//выбор направления движения фигуры
 		if (KEY_DOWN(VK_LEFT)) //37 стрелка влево
 		{
-			figX -= Step;
+			figX -= step;
 			MoveTo(figX, figY);
 			Sleep(500); //задержка экрана на 500 милисекунд
 		}//if
 
 		if (KEY_DOWN(VK_RIGHT)) //39 стрелка вправо
 		{
-			figX += Step;
+			figX += step;
 			MoveTo(figX, figY);
 			Sleep(500); //задержка экрана на 500 милисекунд
 		}//if
 
 		if (KEY_DOWN(VK_DOWN)) //40 стрелка вниз
 		{
-			figY += Step;
+			figY += step;
 			MoveTo(figX, figY);
 			Sleep(500); //задержка экрана на 500 милисекунд
 		}//if
 
 		if (KEY_DOWN(VK_UP)) //38 стрелка вверх
 		{
-			figY -= Step;
+			figY -= step;
 			MoveTo(figX, figY);
 			Sleep(500); //задержка экрана на 500 милисекунд
 		}//if
@@ -142,11 +161,81 @@ TV::TV(int x, int y, int scrHeight, int scrWidth, int stHeight) : Point(x, y)
 	_screenHeight = scrHeight;
 	_screenWidth = scrWidth;
 	_standHeight = stHeight;
+	_xTopRight = x + scrWidth;
+	_yTopRight = y + scrHeight + stHeight + 10;
+	_xBottomLeft = x;
+	_yBottomLeft = y;
 }
 
 //деструктор телевизора
 TV::~TV()
 {
+}
+
+void TV::Drag(int step)
+{
+	int figX, figY; //новые координаты фигуры
+
+	figX = GetX(); //получаем начальные координаты фигуры
+	figY = GetY();
+
+	//бесконечный цикл буксировки фигуры
+	while (1)
+	{
+		if (KEY_DOWN(VK_ESCAPE)) //27 esc - конец работы
+			break;
+
+		//выбор направления движения фигуры
+		if (KEY_DOWN(VK_LEFT)) //37 стрелка влево
+		{
+			figX -= step;
+			_xTopRight -= step;
+			_xBottomLeft -= step;
+			MoveTo(figX, figY);
+			Sleep(500); //задержка экрана на 500 милисекунд
+		}//if
+
+		if (KEY_DOWN(VK_RIGHT)) //39 стрелка вправо
+		{
+			figX += step;
+			_xTopRight += step;
+			_xBottomLeft += step;
+			MoveTo(figX, figY);
+			Sleep(500); //задержка экрана на 500 милисекунд
+		}//if
+
+		if (KEY_DOWN(VK_DOWN)) //40 стрелка вниз
+		{
+			figY += step;
+			_yTopRight += step;
+			_yBottomLeft += step;
+			MoveTo(figX, figY);
+			Sleep(500); //задержка экрана на 500 милисекунд
+		}//if
+
+		if (KEY_DOWN(VK_UP)) //38 стрелка вверх
+		{
+			figY -= step;
+			_yTopRight -= step;
+			_yBottomLeft -= step;
+			MoveTo(figX, figY);
+			Sleep(500); //задержка экрана на 500 милисекунд
+		}//if
+
+		//после каждого перемещения все объекты проверяются на столкновение
+		for (int i = 0; i < DESTRUCTIVE_SIZE; i++)
+		{
+			if (destructiveObjects[i].Collision(*this))
+			{
+				cout << "Произошло столкновение!\n";
+				Hide();
+				BrokenTV brokenTV = BrokenTV(X, Y, _screenHeight, _screenWidth, _standHeight);
+				brokenTV.Show();
+
+				return;
+			}
+		}
+	}//while
 }
 
 //показать телевизор
@@ -209,59 +298,25 @@ void TV::Hide()
 	DeleteObject(brush);
 }
 
-////переместить телевизор
-//void TV::MoveTo(int newX, int newY)
-//{
-//	Hide();		//сделать точку невидимой
-//	X = newX;	//поменять координаты ТОЧКИ
-//	Y = newY;
-//	Show();		//показать точку на новом месте
-//}
-//
-////сдвинуть телевизор по нажатию клавишу
-//void TV::Drag(int step)
-//{
-//	int figX, figY; //новые координаты фигуры
-//
-//	figX = GetX(); //получаем начальные координаты фигуры
-//	figY = GetY();
-//
-//	//бесконечный цикл буксировки фигуры
-//	while (1)
-//	{
-//		if (KEY_DOWN(VK_ESCAPE)) //27 esc - конец работы
-//			break;
-//
-//		//выбор направления движения фигуры
-//		if (KEY_DOWN(VK_LEFT)) //37 стрелка влево
-//		{
-//			figX -= step;
-//			MoveTo(figX, figY);
-//			Sleep(500); //задержка экрана на 500 милисекунд
-//		}//if
-//
-//		if (KEY_DOWN(VK_RIGHT)) //39 стрелка вправо
-//		{
-//			figX += step;
-//			MoveTo(figX, figY);
-//			Sleep(500); //задержка экрана на 500 милисекунд
-//		}//if
-//
-//		if (KEY_DOWN(VK_DOWN)) //40 стрелка вниз
-//		{
-//			figY += step;
-//			MoveTo(figX, figY);
-//			Sleep(500); //задержка экрана на 500 милисекунд
-//		}//if
-//
-//		if (KEY_DOWN(VK_UP)) //38 стрелка вверх
-//		{
-//			figY -= step;
-//			MoveTo(figX, figY);
-//			Sleep(500); //задержка экрана на 500 милисекунд
-//		}//if
-//	}//while
-//}
+int TV::GetXTopRight()
+{
+	return _xTopRight;
+}
+
+int TV::GetYTopRight()
+{
+	return _yTopRight;
+}
+
+int TV::GetXBottomLeft()
+{
+	return _xBottomLeft;
+}
+
+int TV::GetYBottomLeft()
+{
+	return _yBottomLeft;
+}
 
 BrokenTV::BrokenTV(int x, int y, int scrHeight, int scrWidth, int stHeight) : TV(x, y, scrHeight, scrWidth, stHeight)
 {
@@ -424,7 +479,6 @@ void EllipseTV::Hide()
 
 MagicTV::MagicTV(int x, int y, int scrHeight, int scrWidth, int stHeight) : TV(x, y, scrHeight, scrWidth, stHeight)
 {
-
 }
 
 void MagicTV::Show()
@@ -443,8 +497,7 @@ void MagicTV::Show()
 	Rectangle(hdc, X + _screenWidth / 2 - 10, Y + _screenHeight, X + _screenWidth / 2 + 10, Y + _screenHeight + _standHeight);
 	Rectangle(hdc, X + _screenWidth * 0.2, Y + _screenHeight + _standHeight, X + _screenWidth * 0.8, Y + _screenHeight + _standHeight + 10);
 
-
-	HBRUSH brush = CreateSolidBrush(RGB(255, 0, 0));
+	HBRUSH brush = CreateSolidBrush(RGB(255, 215, 0));
 
 	SelectObject(hdc, brush);
 
@@ -459,43 +512,29 @@ void MagicTV::Show()
 	Ellipse(hdc, X + 5, Y + 5, X + _screenWidth - 5, Y + _screenHeight - 5);
 
 	// Зададим перо и цвет пера - чёрный
-	HPEN pen = CreatePen(PS_SOLID, 2, RGB(0, 0, 0));
-	SelectObject(hdc, pen); //сделали перо активным
+	HBRUSH brush3 = CreateSolidBrush(RGB(255, 255, 255));
 
-	//Рисуем овал лица
-	Ellipse(hdc, X + _screenWidth / 2 - _faceWidth / 2, Y - _faceHeight / 2, X + _faceWidth / 2, Y + _faceHeight / 2);
-	//Рисуем левый глаз
-	Ellipse(hdc, X - 3 * _faceWidth / 8, Y - _eyesWidth, X - _faceWidth / 8, Y);
-	//Рисуем правый глаз
-	Ellipse(hdc, X + _faceWidth / 8, Y - _eyesWidth, X + 3 * _faceWidth / 8, Y);
-	//Рисуем брови
-	MoveToEx(hdc, X - 3 * _faceWidth / 8, Y - 3 * _eyesWidth / 2, NULL);
-	LineTo(hdc, X - _faceWidth / 8, Y - 3 * _eyesWidth / 2);
-	MoveToEx(hdc, X + 3 * _faceWidth / 8, Y - 3 * _eyesWidth / 2, NULL);
-	LineTo(hdc, X + _faceWidth / 8, Y - 3 * _eyesWidth / 2);
-	//Рисуем нос
-	MoveToEx(hdc, X, Y - _eyesWidth, NULL);
-	LineTo(hdc, X - _noseWidth / 2, Y + _faceHeight / 7);
-	MoveToEx(hdc, X - _noseWidth / 2, Y + faceHeight / 7, NULL);
-	LineTo(hdc, X + noseWidth / 2, Y + faceHeight / 7);
-	//Рисуем рот 
-	MoveToEx(hdc, X - mouthLength / 2, Y + faceHeight / 4, NULL);
-	LineTo(hdc, X + mouthLength / 2, Y + faceHeight / 4);
-	Arc(hdc, X - mouthLength / 2, Y + 11 * faceHeight / 48, X + mouthLength / 2, Y + 13 * faceHeight / 48,
-		X - mouthLength / 2, Y + faceHeight / 4, X + mouthLength / 2, Y + faceHeight / 4);
-	DeleteObject(pen);
-	//Рисуем зрачки
-	HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
-	SelectObject(hdc, brush); //сделали кисть активной
-	Ellipse(hdc, X - 5 * faceWidth / 16, Y - eyesWidth, X - 3 * faceWidth / 16, Y);
-	Ellipse(hdc, X + 3 * faceWidth / 16, Y - eyesWidth, X + 5 * faceWidth / 16, Y);
+	SelectObject(hdc, brush3); //сделали перо активным
 
+	Ellipse(hdc, X + _screenWidth / 2 - _screenWidth / 6, Y + _screenHeight / 8, X + _screenWidth / 2 + _screenWidth / 6, Y + _screenHeight / 8 * 7);
 
-	DeleteObject(brush);
+	SelectObject(hdc, brush2); //сделали перо активным
+
+	Ellipse(hdc, X + _screenWidth / 2 - _screenWidth / 8, Y + _screenHeight / 3, X + _screenWidth / 2 - _screenWidth / 25, Y + _screenHeight / 3 + _screenHeight / 10);
+	Ellipse(hdc, X + _screenWidth / 2 + _screenWidth / 25, Y + _screenHeight / 3, X + _screenWidth / 2 + _screenWidth / 8, Y + _screenHeight / 3 + _screenHeight / 10);
+	Arc(hdc, X + _screenWidth / 2 - _screenWidth / 10, 
+		Y + _screenHeight / 2 + _screenHeight / 10, 
+		X + _screenWidth / 2 + _screenWidth / 10, 
+		Y + _screenHeight / 2 + _screenHeight / 5, 
+		X + _screenWidth / 2 - _screenWidth / 10, 
+		Y + _screenHeight / 2 + _screenHeight / 5, 
+		X + _screenWidth / 2 + _screenWidth / 10, Y + _screenHeight / 2 + _screenHeight / 6);
+	
 
 	DeleteObject(pen);
 	DeleteObject(brush);
 	DeleteObject(brush2);
+	DeleteObject(brush3);
 }
 
 void MagicTV::Hide()
@@ -526,4 +565,59 @@ void MagicTV::Hide()
 
 	DeleteObject(pen);
 	DeleteObject(brush);
+};
+
+//BrokenEllipseTV::BrokenEllipseTV(int x, int y, int scrHeight, int scrWidth, int stHeight) : TV(x, y, scrHeight, scrWidth, stHeight)
+//{
+//}
+//
+//void BrokenEllipseTV::Show()
+//{
+//}
+
+bool Object::Collision(TV& TV)
+{
+	//определение столкновения слева
+	bool left = _xBottomLeft <= TV.GetXTopRight() && _xTopRight >= TV.GetXTopRight()
+		&& (_yBottomLeft <= TV.GetYTopRight() && _yBottomLeft >= TV.GetYBottomLeft()
+			|| _yTopRight >= TV.GetYBottomLeft() && _yTopRight <= TV.GetYTopRight());
+	//определение столкновений справа
+	bool right = _xTopRight >= TV.GetXBottomLeft() && _xBottomLeft <= TV.GetXBottomLeft()
+		&& (_yBottomLeft <= TV.GetYTopRight() && _yBottomLeft >= TV.GetYBottomLeft()
+			|| _yTopRight >= TV.GetYBottomLeft() && _yTopRight <= TV.GetYTopRight());
+	//определение столкновений сверху
+	bool top = _yBottomLeft <= TV.GetYBottomLeft() && _yTopRight >= TV.GetYBottomLeft()
+		&& (_xBottomLeft <= TV.GetXTopRight() && _xBottomLeft >= TV.GetXBottomLeft()
+			|| _xBottomLeft >= TV.GetXBottomLeft() && _xTopRight <= TV.GetXTopRight());
+	//определение столкновений снизу
+	bool bottom = _yTopRight >= TV.GetYTopRight() && _yBottomLeft <= TV.GetYTopRight()
+		&& (_xBottomLeft <= TV.GetXTopRight() && _xBottomLeft >= TV.GetXBottomLeft()
+			|| _xTopRight >= TV.GetXBottomLeft() && _xTopRight <= TV.GetXTopRight());
+
+	//определение того, находится ли препятствие "внутри" фигуры
+	bool inside = _xBottomLeft >= TV.GetXBottomLeft() && _yBottomLeft >= TV.GetYBottomLeft() &&
+		_xTopRight <= TV.GetXTopRight() && _yTopRight <= TV.GetYTopRight();
+
+	//если хоть одно есть, то столкновение есть
+	return left || right || top || bottom || inside;
+}
+
+Stone::Stone(int x, int y, int radius) : Object(x, y)
+{
+	_radius = radius;
+
+	//расчет крайних координат
+	_xTopRight = x - radius;
+	_yTopRight = y - radius;
+	_xBottomLeft = x + radius;
+	_yBottomLeft = y + radius;
+
+	HPEN Pen = CreatePen(PS_SOLID, 2, RGB(100, 100, 100));
+	SelectObject(hdc, Pen);	//сделаем перо активным
+
+	// Нарисуем круг установленным цветом
+	Ellipse(hdc, X - radius, Y - radius, X + radius, Y + radius);
+
+	// Уничтожим нами созданные объекты  
+	DeleteObject(Pen);
 };

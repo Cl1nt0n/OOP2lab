@@ -25,11 +25,6 @@ public:
 	void MoveTo(int NewX, int NewY);//переместить фигуру
 	void Drag(int step);			//буксировка фигуры
 
-	//статические методы (раннее связывание)
-	//void Show();					//
-	//void Hide();					//
-
-	//виртуальные методы (позднее связывание)
 	virtual void Show();			// показать фигуру ТОЧКА
 	virtual void Hide();			// скрыть фигуру ТОЧКА
 };//класс Point
@@ -41,15 +36,24 @@ protected:
 	int _screenHeight;				// высота экрана
 	int _screenWidth;				// ширина экрана
 	int _standHeight;				// высота 
+	int _xTopRight;
+	int _yTopRight;
+	int _xBottomLeft;
+	int _yBottomLeft;
 public:
 	TV(int x, int y, int scrHeight, int scrWidth,
 		int stHeight);	//конструктор
 	~TV();				//деструктор
 
-	//void Drag(int step);		//перемещение фигуры
+	void Drag(int step);		//перемещение фигуры
 	void Show();				//показать фигуру
 	void Hide();				//скрыть фигуру
 	//void MoveTo(int NewX, int NewY); //переместить фигуру
+
+	int GetXTopRight();
+	int GetYTopRight();
+	int GetXBottomLeft();
+	int GetYBottomLeft();
 };//класс TV
 
 class BrokenTV : public TV
@@ -74,12 +78,6 @@ public:
 
 class MagicTV : public TV
 {
-protected:
-	int _faceWidth;
-	int _faceHeight;
-	int _eyesWidth;
-	int _noseWidth;
-	int _mouthLenght;
 public:
 	MagicTV(int x, int y, int scrHeight, int scrWidth,
 		int stHeight);
@@ -88,37 +86,40 @@ public:
 	void Hide();
 };
 
-//class BrokenTV : public TV
+//class BrokenEllipseTV : public TV
 //{
-//protected:
-//	bool _isBroken;
 //public:
-//	BrokenTV(int x, int y, int scrHeight, int scrWidth,
-//		int stHeight, bool isBroken);	//конструктор
-//	~BrokenTV();
+//	BrokenEllipseTV(int x, int y, int scrHeight, int scrWidth,
+//		int stHeight);
 //
-//	void Show();				//показать фигуру
-//	void Hide();				//скрыть фигуру
+//	void Show();
+//	void Hide();
 //};
 
-//class EllipseTV : public TV
-//{
-//protected:
-//	int _ellipseRadius;
-//public:
-//	EllipseTV(int x, int y, int scrHeight, int scrWidth,
-//		int stHeight, bool isBroken);	//конструктор
-//	~EllipseTV();
-//
-//	virtual void Show();				//показать фигуру
-//	virtual void Hide();				//скрыть фигуру
-//};
-//
-//class MagicTV : public TV
-//{
-//protected:
-//
-//public:
-//
-//};
-//
+class Object : public Point
+{
+protected:
+	//координаты крайних точек хитбокса
+	int _xTopRight;
+	int _yTopRight;
+	int _xBottomLeft;
+	int _yBottomLeft;
+public:
+	Object();
+	Object(int x, int y);
+
+	bool Collision(TV& TV);
+};
+
+class Stone : public Object
+{
+protected:
+	int _radius;
+public:
+	Stone(int x, int y, int radius);
+};
+
+class Electricity : public Object
+{
+
+};

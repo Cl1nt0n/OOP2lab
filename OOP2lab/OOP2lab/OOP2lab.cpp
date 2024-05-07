@@ -26,9 +26,13 @@ using namespace std;
 HDC hdc;
 HWND GetConsoleWindow(); //указатель на консольное окно
 
+Object destructiveObjects[1];
+//Object interactingObjects[1];
+
 //Основная программа
 int main()
 {
+	setlocale(LC_ALL, "ru");
 	system("color F0");
 	HWND hwnd = GetConsoleWindow(); //получили дескриптор консольного окна
 
@@ -48,51 +52,56 @@ int main()
 			BrokenTV brokenTV = BrokenTV(200, 200, 162, 288, 25);
 			EllipseTV ellipseTV = EllipseTV(200, 200, 162, 288, 25);
 			MagicTV magicTV = MagicTV(200, 200, 162, 288, 25);
+			Stone stone = Stone(600, 190, 20);
+
 			tv.Show();
+			destructiveObjects[0] = stone;
+
 			tv.Drag(300);
 
-			while (1)
-			{
-				if (KEY_DOWN(49)) //цифра 1
-				{
-					break;
-				}
-			}
+			//while (1)
+			//{
+			//	if (KEY_DOWN(49)) //цифра 1
+			//	{
+			//		break;
+			//	}
+			//}
 
-			tv.Hide();
-			brokenTV.Show();
-			brokenTV.Drag(300); //перемещение фигуры, выход по esc
-			while (1)
-			{
-				if (KEY_DOWN(50)) //цифра 2
-				{
-					break;
-				}
-			}
+			//tv.Hide();
+			//brokenTV.Show();
+			//brokenTV.Drag(300); //перемещение фигуры, выход по esc
+			//while (1)
+			//{
+			//	if (KEY_DOWN(50)) //цифра 2
+			//	{
+			//		break;
+			//	}
+			//}
 
-			brokenTV.Hide();
-			ellipseTV.Show();
-			ellipseTV.Drag(300);
-			while (1)
-			{
-				if (KEY_DOWN(51)) //цифра 3
-				{
-					break;
-				}
-			}
+			//brokenTV.Hide();
+			//ellipseTV.Show();
+			//ellipseTV.Drag(300);
+			//while (1)
+			//{
+			//	if (KEY_DOWN(51)) //цифра 3
+			//	{
+			//		break;
+			//	}
+			//}
 
-			ellipseTV.Hide();
-			magicTV.Show();
-			magicTV.Drag(300);
-			while (1)
-			{
-				if (KEY_DOWN(52)) //цифра 4
-				{
-					break;
-				}
-			}
+			//ellipseTV.Hide();
+			//magicTV.Show();
+			//magicTV.Drag(300);
+			//while (1)
+			//{
+			//	if (KEY_DOWN(52)) //цифра 4
+			//	{
+			//		break;
+			//	}
+			//}
 		}
 	}
+	Sleep(3000);
 	return 0;
 }
 
