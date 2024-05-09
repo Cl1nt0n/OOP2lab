@@ -18,6 +18,7 @@
 #include <iostream>
 #include <windows.h>
 #include "TV.h"
+#include "TV.cpp"
 using namespace std;
 
 //макрос для определения кода нажатой клавиши
@@ -26,8 +27,10 @@ using namespace std;
 HDC hdc;
 HWND GetConsoleWindow(); //указатель на консольное окно
 
-Object destructiveObjects[1];
+Object destructiveObjects[];
 //Object interactingObjects[1];
+
+int objectIndex = -1;
 
 //Основная программа
 int main()
@@ -36,28 +39,68 @@ int main()
 	system("color F0");
 	HWND hwnd = GetConsoleWindow(); //получили дескриптор консольного окна
 
+	int transitionMatrix[ARR_SIZE][ARR_SIZE] = {};
+
 	if (hwnd != NULL)
 	{
 		hdc = GetWindowDC(hwnd);
 
 		if (hdc != NULL)
 		{
-			/*Point point = Point(300, 300);
-			TV tv = TV(200, 200, 162, 288, 25);
-			tv.Show();
-			tv.Drag(300);*/
-
 			Point point = Point(300, 300);
 			TV tv = TV(200, 200, 162, 288, 25);
+			TV* currentTV;
+			currentTV = &tv;
+			tv.Show();
+			tv.Drag(300);
+			TV tv = TV(200, 200, 162, 288, 25);
 			BrokenTV brokenTV = BrokenTV(200, 200, 162, 288, 25);
+			BrokenEllipseTV brokenEllipseTV = BrokenEllipseTV(200, 200, 162, 288, 25);
 			EllipseTV ellipseTV = EllipseTV(200, 200, 162, 288, 25);
 			MagicTV magicTV = MagicTV(200, 200, 162, 288, 25);
+
+			TV* TVs[ARR_SIZE] = { &tv, &brokenTV, &ellipseTV, &magicTV, &brokenEllipseTV };
+
 			Stone stone = Stone(600, 190, 20);
+			Electricity electricity = Electricity(200, 200, 30);
+			MagicSource magicSource = MagicSource(300, 200, 50, 50);
+
+			Object* objects[INTERACTING_SIZE] = { &stone, &electricity, &magicSource };
 
 			tv.Show();
 			destructiveObjects[0] = stone;
 
 			tv.Drag(300);
+
+			while (1)
+			{
+				currentTV->Drag(40);
+				//выход в результате столкновения
+				if (objectIndex != -1)
+				{
+					currentTV->MoveTo(200, 200); //переход машины на начальное место
+					currentTV->Hide();
+
+					//currentTV = TVs[matr_per[objectIndex][pchair->getIndex()]]; //переход к новому объекту
+
+					currentTV->Show();
+					objectIndex = -1;
+
+					while (1)
+					{
+						if (KEY_DOWN(48)) //цифра 0, выход из программы
+						{
+							return -2;
+						}
+
+						if (KEY_DOWN(49)) //цифра 1, продолжение движения
+						{
+							break;
+						}
+
+					}//while
+				}
+			}//while
 
 			//while (1)
 			//{

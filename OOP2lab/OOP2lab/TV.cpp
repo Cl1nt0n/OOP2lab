@@ -6,11 +6,13 @@ using namespace std;
 
 extern HDC hdc;			// объ€вление контекста устройства
 #define KEY_DOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
-#define DESTRUCTIVE_SIZE 1
-#define INTERACTING_SIZE 1
+#define INTERACTING_SIZE 5
+#define ARR_SIZE 5
 
 extern Object destructiveObjects[1];
 //extern Object interactingObjects[1];
+
+extern int objectIndex;
 
 //конструктор Location
 Location::Location(int x, int y)
@@ -621,3 +623,18 @@ Stone::Stone(int x, int y, int radius) : Object(x, y)
 	// ”ничтожим нами созданные объекты  
 	DeleteObject(Pen);
 };
+
+Electricity::Electricity(int x, int y, int radius) : Object(x, y)
+{
+	_radius = radius;
+}
+
+BrokenEllipseTV::BrokenEllipseTV(int x, int y, int scrHeight, int scrWidth, int stHeight) : EllipseTV(x, y, scrHeight, scrWidth, stHeight)
+{
+
+}
+
+MagicSource::MagicSource(int x, int y, int _starLenght, int _starWidth) : Object(x, y)
+{
+
+}

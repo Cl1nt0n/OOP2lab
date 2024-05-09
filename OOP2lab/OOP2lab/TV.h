@@ -76,6 +76,16 @@ public:
 	void Hide();
 };
 
+class BrokenEllipseTV : public EllipseTV
+{
+public:
+	BrokenEllipseTV(int x, int y, int scrHeight, int scrWidth,
+		int stHeight);
+
+	void Show();
+	void Hide();
+};
+
 class MagicTV : public TV
 {
 public:
@@ -121,5 +131,17 @@ public:
 
 class Electricity : public Object
 {
+protected:
+	int _radius;
+public:
+	Electricity(int x, int y, int radius);
+};
 
+class MagicSource : public Object
+{
+protected:
+	int _starLenght;
+	int _starWidth;
+public:
+	MagicSource(int x, int y, int _starLenght, int _starWidth);
 };
