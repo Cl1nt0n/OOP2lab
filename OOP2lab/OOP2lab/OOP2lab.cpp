@@ -16,30 +16,37 @@
 *************************************************************************/
 
 #include <iostream>
-#include <windows.h>
+#include <Windows.h>
 #include "TV.h"
-#include "TV.cpp"
 using namespace std;
 
 //макрос для определения кода нажатой клавиши
 #define KEY_DOWN(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 1 : 0)
+#define INTERACTING_SIZE 2
+#define ARR_SIZE 5
 
 HDC hdc;
 HWND GetConsoleWindow(); //указатель на консольное окно
 
-Object destructiveObjects[];
-//Object interactingObjects[1];
-
-int objectIndex = -1;
+bool CheckCollision(TV& TV, Object& object);
 
 //Основная программа
 int main()
 {
 	setlocale(LC_ALL, "ru");
 	system("color F0");
+
 	HWND hwnd = GetConsoleWindow(); //получили дескриптор консольного окна
 
-	int transitionMatrix[ARR_SIZE][ARR_SIZE] = {};
+	int transitionMatrix[ARR_SIZE][INTERACTING_SIZE] =
+	{
+		{ 1, 1 },
+		{ 1, 1 },
+		{ 4, 3 },
+		{ 4, 3 },
+		{ 4, 4 }
+	};
+	int objectIndex = -1;
 
 	if (hwnd != NULL)
 	{
@@ -47,101 +54,43 @@ int main()
 
 		if (hdc != NULL)
 		{
-			Point point = Point(300, 300);
-			TV tv = TV(200, 200, 162, 288, 25);
 			TV* currentTV;
-			currentTV = &tv;
-			tv.Show();
-			tv.Drag(300);
 			TV tv = TV(200, 200, 162, 288, 25);
 			BrokenTV brokenTV = BrokenTV(200, 200, 162, 288, 25);
 			BrokenEllipseTV brokenEllipseTV = BrokenEllipseTV(200, 200, 162, 288, 25);
 			EllipseTV ellipseTV = EllipseTV(200, 200, 162, 288, 25);
 			MagicTV magicTV = MagicTV(200, 200, 162, 288, 25);
 
+			currentTV = &tv;
 			TV* TVs[ARR_SIZE] = { &tv, &brokenTV, &ellipseTV, &magicTV, &brokenEllipseTV };
 
-			Stone stone = Stone(600, 190, 20);
-			Electricity electricity = Electricity(200, 200, 30);
-			MagicSource magicSource = MagicSource(300, 200, 50, 50);
+			Stone stone = Stone(700, 190, 50);
+			MagicSource magicSource = MagicSource(100, 50, 50, 50);
 
-			Object* objects[INTERACTING_SIZE] = { &stone, &electricity, &magicSource };
+			Object* objects[INTERACTING_SIZE] = { &stone, &magicSource };
 
-			tv.Show();
-			destructiveObjects[0] = stone;
-
-			tv.Drag(300);
-
-			while (1)
+			currentTV->Show(hdc);
+			while (!KEY_DOWN(VK_ESCAPE))
 			{
-				currentTV->Drag(40);
+				for (int i = 0; i < INTERACTING_SIZE; i++)
+					objects[i]->Show(hdc);
+				currentTV->Drag(100, hdc);
+				for (int i = 0; i < INTERACTING_SIZE; i++)
+					if (CheckCollision(*currentTV, *(objects[i])))
+						objectIndex = i;
+
 				//выход в результате столкновения
 				if (objectIndex != -1)
 				{
-					currentTV->MoveTo(200, 200); //переход машины на начальное место
-					currentTV->Hide();
+					currentTV->MoveTo(200, 200, hdc); //переход машины на начальное место
+					currentTV->Hide(hdc);
 
-					//currentTV = TVs[matr_per[objectIndex][pchair->getIndex()]]; //переход к новому объекту
+					currentTV = TVs[transitionMatrix[currentTV->GetIndex()][objectIndex]]; //переход к новому объекту
 
-					currentTV->Show();
+					currentTV->Show(hdc);
 					objectIndex = -1;
-
-					while (1)
-					{
-						if (KEY_DOWN(48)) //цифра 0, выход из программы
-						{
-							return -2;
-						}
-
-						if (KEY_DOWN(49)) //цифра 1, продолжение движения
-						{
-							break;
-						}
-
-					}//while
 				}
 			}//while
-
-			//while (1)
-			//{
-			//	if (KEY_DOWN(49)) //цифра 1
-			//	{
-			//		break;
-			//	}
-			//}
-
-			//tv.Hide();
-			//brokenTV.Show();
-			//brokenTV.Drag(300); //перемещение фигуры, выход по esc
-			//while (1)
-			//{
-			//	if (KEY_DOWN(50)) //цифра 2
-			//	{
-			//		break;
-			//	}
-			//}
-
-			//brokenTV.Hide();
-			//ellipseTV.Show();
-			//ellipseTV.Drag(300);
-			//while (1)
-			//{
-			//	if (KEY_DOWN(51)) //цифра 3
-			//	{
-			//		break;
-			//	}
-			//}
-
-			//ellipseTV.Hide();
-			//magicTV.Show();
-			//magicTV.Drag(300);
-			//while (1)
-			//{
-			//	if (KEY_DOWN(52)) //цифра 4
-			//	{
-			//		break;
-			//	}
-			//}
 		}
 	}
 	Sleep(3000);
@@ -161,4 +110,33 @@ HWND GetConsoleWindow()
 	SetConsoleTitle((LPWSTR)str);				//возвращаем прежний заголовок
 
 	return hwnd;//вернуть дескриптор окна
-}//end GetConcolWindow()
+}
+
+bool CheckCollision(TV& TV, Object& object)
+{
+	//определение столкновения слева
+	bool left = object.GetXTopLeft() <= TV.GetXBottomRight() && object.GetXBottomRight() >= TV.GetXBottomRight()
+		&& (object.GetYTopLeft() <= TV.GetYBottomRight() && object.GetYTopLeft() >= TV.GetYTopLeft()
+			|| object.GetYBottomRight() >= TV.GetYTopLeft() && object.GetYBottomRight() <= TV.GetYBottomRight());
+
+	//определение столкновений справа
+	bool right = object.GetXBottomRight() >= TV.GetXTopLeft() && object.GetXTopLeft() <= TV.GetXTopLeft()
+		&& (object.GetYTopLeft() <= TV.GetYBottomRight() && object.GetYTopLeft() >= TV.GetYTopLeft()
+			|| object.GetYBottomRight() >= TV.GetYTopLeft() && object.GetYBottomRight() <= TV.GetYBottomRight());
+
+	//определение столкновений сверху
+	bool top = object.GetYTopLeft() <= TV.GetYTopLeft() && object.GetYBottomRight() >= TV.GetYTopLeft()
+		&& (object.GetXTopLeft() <= TV.GetXBottomRight() && object.GetXTopLeft() >= TV.GetXTopLeft()
+			|| object.GetXTopLeft() >= TV.GetXTopLeft() && object.GetXBottomRight() <= TV.GetXBottomRight());
+
+	//определение столкновений снизу
+	bool bottom = object.GetYBottomRight() >= TV.GetYBottomRight() && object.GetYTopLeft() <= TV.GetYBottomRight()
+		&& (object.GetXTopLeft() <= TV.GetXBottomRight() && object.GetXTopLeft() >= TV.GetXTopLeft()
+			|| object.GetXBottomRight() >= TV.GetXTopLeft() && object.GetXBottomRight() <= TV.GetXBottomRight());
+
+	//определение того, находится ли препятствие "внутри" фигуры
+	bool inside = object.GetXTopLeft() >= TV.GetXTopLeft() && object.GetYTopLeft() >= TV.GetYTopLeft() &&
+		object.GetXBottomRight() <= TV.GetXBottomRight() && object.GetYBottomRight() <= TV.GetYBottomRight();
+
+	return left || right || top || bottom || inside;
+}

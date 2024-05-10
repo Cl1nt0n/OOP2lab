@@ -1,5 +1,5 @@
 ﻿  OOP2lab.cpp
-C:\Users\igorc\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\OOP2lab.cpp(27,6): warning C4273: GetConsoleWindow: несовместимое связывание dll
+C:\Users\igorc\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\OOP2lab.cpp(29,6): warning C4273: GetConsoleWindow: несовместимое связывание dll
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\consoleapi3.h(167,1):
   см. предыдущее определение "GetConsoleWindow"
   

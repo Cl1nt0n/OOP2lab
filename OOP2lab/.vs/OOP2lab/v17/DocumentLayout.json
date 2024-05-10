@@ -1,18 +1,27 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\",
+  "WorkspaceRootPath": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\OOP2lab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\OOP2lab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|solutionrelative:OOP2lab\\OOP2lab.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\oop_LR_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83DA2809-3A6B-460C-8ACA-A167F5B2003C}|..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\VisualStudio\\17.0_bf8b55b2\\SingleFileISense\\_sfi_cd081b0d-3822-4753-8b47-a12ef31383b6_.vcxproj|C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|solutionrelative:OOP2lab\\TV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{261C0527-E1E6-46BD-853E-2693889605F7}|OOP2lab\\OOP2lab.vcxproj|solutionrelative:OOP2lab\\TV.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83DA2809-3A6B-460C-8ACA-A167F5B2003C}|..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\VisualStudio\\17.0_bf8b55b2\\SingleFileISense\\_sfi_cd081b0d-3822-4753-8b47-a12ef31383b6_.vcxproj|C:\\USERS\\IGORC\\DOWNLOADS\\ARCHIVE-2024-05-10_12-14-25\\ARCHIVE\\HEADER.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +31,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,25 +48,64 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "oop_LR_3.cpp",
+              "DocumentMoniker": "C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\oop_LR_3.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Downloads\\archive-2024-05-10_12-14-25\\archive\\oop_LR_3.cpp",
+              "ToolTip": "C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\oop_LR_3.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\Downloads\\archive-2024-05-10_12-14-25\\archive\\oop_LR_3.cpp",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAAADkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-10T13:20:26.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Source.cpp",
+              "DocumentMoniker": "C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Source.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Source.cpp",
+              "ToolTip": "C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Source.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Source.cpp",
+              "ViewState": "AQIAAC8CAAAAAAAAAAAAAFYCAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-05-10T11:36:46.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Header.h",
+              "DocumentMoniker": "C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Header.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Header.h",
+              "ToolTip": "C:\\Users\\igorc\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Header.h",
+              "RelativeToolTip": "..\\..\\..\\..\\Downloads\\archive-2024-05-10_12-14-25\\archive\\Header.h",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAiwFEAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-10T09:15:26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "TV.cpp",
-              "DocumentMoniker": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.cpp",
+              "DocumentMoniker": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.cpp",
               "RelativeDocumentMoniker": "OOP2lab\\TV.cpp",
-              "ToolTip": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.cpp",
+              "ToolTip": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.cpp",
               "RelativeToolTip": "OOP2lab\\TV.cpp",
-              "ViewState": "AQIAAIcAAAAAAAAAAAAEwOMAAAAWAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAiwFwAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-05-05T16:48:04.244Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "TV.h",
-              "DocumentMoniker": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.h",
+              "DocumentMoniker": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.h",
               "RelativeDocumentMoniker": "OOP2lab\\TV.h",
-              "ToolTip": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.h",
+              "ToolTip": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\TV.h",
               "RelativeToolTip": "OOP2lab\\TV.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJEAAAAKAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAiwBgAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-05T16:47:03.775Z",
               "EditorCaption": ""
@@ -66,11 +114,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "OOP2lab.cpp",
-              "DocumentMoniker": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\OOP2lab.cpp",
+              "DocumentMoniker": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\OOP2lab.cpp",
               "RelativeDocumentMoniker": "OOP2lab\\OOP2lab.cpp",
-              "ToolTip": "C:\\Users\\\u0418\u0433\u043E\u0440\u044C\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\OOP2lab.cpp",
+              "ToolTip": "C:\\Users\\igorc\\Documents\\GitHub\\OOP2lab\\OOP2lab\\OOP2lab\\OOP2lab.cpp",
               "RelativeToolTip": "OOP2lab\\OOP2lab.cpp",
-              "ViewState": "AQIAADAAAAAAAAAAAAAEwFUAAAAXAAAA",
+              "ViewState": "AQIAADQAAAAAAAAAAAAAwD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-05-05T16:45:23.785Z",
               "EditorCaption": ""
