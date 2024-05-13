@@ -3,4 +3,6 @@ C:\Users\igorc\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\OOP2lab.cpp(29,6): warni
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\consoleapi3.h(167,1):
   см. предыдущее определение "GetConsoleWindow"
   
+C:\Users\igorc\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\OOP2lab.cpp(96,4): warning C4154: удаление массива; выполнено преобразование к указателю
+C:\Users\igorc\Documents\GitHub\OOP2lab\OOP2lab\OOP2lab\OOP2lab.cpp(97,4): warning C4154: удаление массива; выполнено преобразование к указателю
   OOP2lab.vcxproj -> C:\Users\igorc\Documents\GitHub\OOP2lab\OOP2lab\x64\Debug\OOP2lab.exe

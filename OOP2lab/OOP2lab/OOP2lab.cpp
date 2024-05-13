@@ -40,11 +40,11 @@ int main()
 
 	int transitionMatrix[ARR_SIZE][INTERACTING_SIZE] =
 	{
-		{ 1, 1 },
-		{ 1, 1 },
+		{ 1, 3 },
+		{ 1, 0 },
 		{ 4, 3 },
 		{ 4, 3 },
-		{ 4, 4 }
+		{ 4, 2 }
 	};
 	int objectIndex = -1;
 
@@ -55,26 +55,27 @@ int main()
 		if (hdc != NULL)
 		{
 			TV* currentTV;
-			TV tv = TV(200, 200, 162, 288, 25);
-			BrokenTV brokenTV = BrokenTV(200, 200, 162, 288, 25);
-			BrokenEllipseTV brokenEllipseTV = BrokenEllipseTV(200, 200, 162, 288, 25);
-			EllipseTV ellipseTV = EllipseTV(200, 200, 162, 288, 25);
-			MagicTV magicTV = MagicTV(200, 200, 162, 288, 25);
 
-			currentTV = &tv;
-			TV* TVs[ARR_SIZE] = { &tv, &brokenTV, &ellipseTV, &magicTV, &brokenEllipseTV };
+			TV* TVs[ARR_SIZE];
+			TVs[0] = new TV(200, 200, 162, 288, 25, hdc);
+			TVs[1] = new BrokenTV(200, 200, 162, 288, 25, hdc);
+			TVs[2] = new EllipseTV(200, 200, 162, 288, 25, hdc);
+			TVs[3] = new MagicTV(200, 200, 162, 288, 25, hdc);
+			TVs[4] = new BrokenEllipseTV(200, 200, 162, 288, 25, hdc);
+			currentTV = TVs[0];
 
-			Stone stone = Stone(700, 190, 50);
-			MagicSource magicSource = MagicSource(100, 50, 50, 50);
+			Object* objects[INTERACTING_SIZE];
+			objects[0] = new Stone(700, 190, 50, hdc);
+			objects[1] = new MagicSource(100, 50, 50, 50, hdc);
 
-			Object* objects[INTERACTING_SIZE] = { &stone, &magicSource };
+			currentTV->Show();
+			for (int i = 0; i < INTERACTING_SIZE; i++)
+				objects[i]->Show();
 
-			currentTV->Show(hdc);
 			while (!KEY_DOWN(VK_ESCAPE))
 			{
-				for (int i = 0; i < INTERACTING_SIZE; i++)
-					objects[i]->Show(hdc);
-				currentTV->Drag(100, hdc);
+				currentTV->Show();
+				currentTV->Drag(100);
 				for (int i = 0; i < INTERACTING_SIZE; i++)
 					if (CheckCollision(*currentTV, *(objects[i])))
 						objectIndex = i;
@@ -82,17 +83,21 @@ int main()
 				//выход в результате столкновения
 				if (objectIndex != -1)
 				{
-					currentTV->MoveTo(200, 200, hdc); //переход машины на начальное место
-					currentTV->Hide(hdc);
-
+					currentTV->Hide();
 					currentTV = TVs[transitionMatrix[currentTV->GetIndex()][objectIndex]]; //переход к новому объекту
+					currentTV->MoveTo(200, 200); //переход машины на начальное место
 
-					currentTV->Show(hdc);
+					objects[objectIndex]->Show();
 					objectIndex = -1;
 				}
 			}//while
+
+			delete currentTV;
+			delete[] TVs;
+			delete[] objects;
 		}
 	}
+
 	Sleep(3000);
 	return 0;
 }
